@@ -8,9 +8,9 @@ e Shift Left em uma aplicação Web.
 
 **Ferramentas utilizadas**
 
-SonarQube - SAST
-Snyk - SCA
-OWASP ZAP - DAST
+- SonarQube - SAST
+- Snyk - SCA
+- OWASP ZAP - DAST
 
 
 **Aplicação**
