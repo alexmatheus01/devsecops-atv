@@ -1,0 +1,30 @@
+name: Security Pipeline
+on:
+  push:
+    branches: - main
+  pull request:
+    branches: - main
+
+jobs:
+  sca: 
+    name: SCA - Snyk
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+      
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Análise SCA com Snyk
+        uses: snyk/actions/node@v1
+        env: 
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN}}
+        with:
+          args: --severity-threshold=high
