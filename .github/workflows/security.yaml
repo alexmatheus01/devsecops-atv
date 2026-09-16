@@ -50,4 +50,4 @@ jobs:
         run: Start-Sleep -Seconds 5
 
       - name: DAST - OWASP ZAP
-        run: docker run --rm -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://host.docker.internal:8080
+        run: docker run --rm -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://host.docker.internal:8080 -I
