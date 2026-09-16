@@ -32,3 +32,22 @@ jobs:
         run: npx snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  dast:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Iniciar aplicação
+        run: Start-Process node -ArgumentList "src/server.js"
+
+      - name: Aguardar aplicação
+        run: Start-Sleep -Seconds 5
+
+      - name: DAST - OWASP ZAP
+        run: docker run --rm -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://host.docker.internal:8080
