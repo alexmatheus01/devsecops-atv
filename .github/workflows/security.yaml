@@ -24,3 +24,6 @@ jobs:
 
       - name: Build
         run: echo "Build realizado com sucesso"
+
+      - name: SAST - SonarQube
+        run: npx sonar-scanner "-Dsonar.token=${{ secrets.SONAR_TOKEN }}"
