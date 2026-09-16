@@ -27,3 +27,8 @@ jobs:
 
       - name: SAST - SonarQube
         run: npx sonar-scanner "-Dsonar.token=${{ secrets.SONAR_TOKEN }}"
+
+      - name: SCA - Snyk
+        run: npx snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
