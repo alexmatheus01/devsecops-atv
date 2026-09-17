@@ -3,7 +3,24 @@ const helmet = require('helmet');
 
 const app = express();
 
-app.use(helmet());
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                baseUri: ["'self'"],
+                formAction: ["'self'"],
+                frameAncestors: ["'self'"],
+                imgSrc: ["'self'", "data:"],
+                objectSrc: ["'none'"],
+                scriptSrc: ["'self'"],
+                scriptSrcAttr: ["'none'"],
+                styleSrc: ["'self'", "https:", "'unsafe-inline'"],
+                fontSrc: ["'self'", "https:", "data:"]
+            }
+        }
+    })
+);
 
 app.get('/', (req, res) => {
     res.send('Aplicação funcionando!');
